@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>罗嘉嘉 · 美人鱼主题简历</title>
+<style>
+  :root{
+    --deep1:#03121f;
+    --deep2:#062b47;
+    --deep3:#0a3a5e;
+    --aqua:#7fe7ff;
+    --aqua-dim:#4db6d8;
+    --pearl:#f4e9d3;
+    --gold:#f5d76e;
+    --text:#e6f6ff;
+    --text-dim:#a8cfe2;
+    --card-bg:linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+    --card-border:1px solid rgba(127,231,255,.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(1200px 600px at 85% -5%, rgba(64,160,255,.20), transparent 60%),
+      radial-gradient(1000px 700px at -10% 30%, rgba(120,80,255,.16), transparent 60%),
+      radial-gradient(900px 600px at 70% 95%, rgba(0,190,255,.12), transparent 60%),
+      linear-gradient(175deg, var(--deep1) 0%, var(--deep2) 45%, var(--deep1) 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    overflow-x:hidden;
+    line-height:1.75;
+  }
+  ::selection{background:rgba(127,231,255,.35);}
+
+  /* ============ 左右浮动美人鱼 ============ */
+  .mermaid-side{
+    position:fixed;
+    z-index:6;
+    pointer-events:none;
+    filter:drop-shadow(0 18px 30px rgba(0,8,20,.55));
+    will-change:transform;
+  }
+  .mermaid-side img{width:100%;display:block;}
+  .mermaid-left{
+    left:1.2vw; top:15vh;
+    width:clamp(170px, 15vw, 300px);
+    animation:swayA 7s ease-in-out infinite;
+  }
+  .mermaid-right{
+    right:1.2vw; top:24vh;
+    width:clamp(160px, 14vw, 280px);
+    animation:swayB 8.6s ease-in-out infinite;
+  }
+  @keyframes swayA{
+    0%,100%{transform:translateY(0) rotate(-1.5deg);}
+    50%{transform:translateY(-30px) rotate(1.8deg);}
+  }
+  @keyframes swayB{
+    0%,100%{transform:translateY(-18px) rotate(1.5deg);}
+    50%{transform:translateY(14px) rotate(-1.8deg);}
+  }
+
+  /* ============ 气泡 ============ */
+  .bubbles{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden;}
+  .bubble{
+    position:absolute;bottom:-70px;border-radius:50%;
+    background:radial-gradient(circle at 32% 30%, rgba(255,255,255,.65), rgba(190,235,255,.16) 55%, rgba(190,235,255,.05));
+    border:1px solid rgba(220,245,255,.22);
+    animation:rise linear infinite;
+    opacity:.75;
+  }
+  @keyframes rise{
+    0%{transform:translateY(0) translateX(0);opacity:0;}
+    8%{opacity:.8;}
+    90%{opacity:.55;}
+    100%{transform:translateY(-112vh) translateX(24px);opacity:0;}
+  }
+  .bubble:nth-child(1){left:6%;width:16px;height:16px;animation-duration:13s;}
+  .bubble:nth-child(2){left:14%;width:9px;height:9px;animation-duration:17s;animation-delay:2s;}
+  .bubble:nth-child(3){left:24%;width:22px;height:22px;animation-duration:11s;animation-delay:1s;}
+  .bubble:nth-child(4){left:78%;width:14px;height:14px;animation-duration:14s;animation-delay:3s;}
+  .bubble:nth-child(5){left:88%;width:10px;height:10px;animation-duration:18s;}
+  .bubble:nth-child(6){left:94%;width:19px;height:19px;animation-duration:12s;animation-delay:5s;}
+  .bubble:nth-child(7){left:70%;width:8px;height:8px;animation-duration:16s;animation-delay:7s;}
+  .bubble:nth-child(8){left:33%;width:11px;height:11px;animation-duration:15s;animation-delay:9s;}
+
+  /* ============ 顶部导航 ============ */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;gap:18px;
+    padding:12px clamp(16px,4vw,48px);
+    background:rgba(3,18,31,.58);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(127,231,255,.14);
+  }
+  .brand{
+    display:flex;align-items:center;gap:9px;
+    font-weight:bold;font-size:17px;color:#fff;white-space:nowrap;
+    text-shadow:0 0 18px rgba(127,231,255,.45);
+  }
+  .brand .fin{font-size:21px;}
+  .nav-links{
+    display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;
+  }
+  .nav-links::-webkit-scrollbar{display:none;}
+  .nav-links a{
+    color:var(--text-dim);text-decoration:none;font-size:14.5px;
+    padding:7px 13px;border-radius:999px;white-space:nowrap;
+    transition:.25s;border:1px solid transparent;
+  }
+  .nav-links a:hover{color:#fff;background:rgba(127,231,255,.10);}
+  .nav-links a.active{
+    color:#062330;background:linear-gradient(120deg,#8fe9ff,#d9b56a);
+    font-weight:bold;border-color:transparent;
+  }
+
+  /* ============ 区块通用 ============ */
+  section{max-width:1000px;margin:0 auto;padding:64px 22px 30px;scroll-margin-top:84px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px;flex-wrap:wrap;}
+  .sec-head .num{
+    font-size:13px;letter-spacing:3px;color:var(--aqua-dim);
+    border:1px solid rgba(127,231,255,.3);border-radius:999px;padding:3px 11px;
+  }
+  .sec-head h2{
+    font-size:clamp(24px,3.4vw,32px);color:#fff;font-weight:bold;letter-spacing:2px;
+    text-shadow:0 0 24px rgba(127,231,255,.35);
+  }
+  .sec-head .en{font-size:12.5px;letter-spacing:4px;color:var(--text-dim);text-transform:uppercase;}
+  .sec-head::after{content:"";flex:1;min-width:60px;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,rgba(127,231,255,.55),rgba(245,215,110,.4),transparent);}
+
+  .glass{
+    background:var(--card-bg);
+    border:var(--card-border);
+    border-radius:22px;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    box-shadow:0 20px 46px rgba(0,9,26,.42);
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .glass:hover{transform:translateY(-4px);box-shadow:0 28px 60px rgba(0,9,26,.5);}
+  .grid-2{display:grid;grid-template-columns:1.04fr .96fr;gap:26px;align-items:stretch;}
+  figure{margin:0;}
+  figure img{width:100%;display:block;border-radius:15px;}
+  figcaption{
+    font-size:12.5px;color:var(--text-dim);text-align:center;margin-top:9px;letter-spacing:1px;
+  }
+  .chip{
+    display:inline-block;padding:4px 13px;margin:3px 4px 3px 0;border-radius:999px;
+    font-size:13px;color:var(--aqua);
+    background:rgba(127,231,255,.09);border:1px solid rgba(127,231,255,.25);
+  }
+  .tag-gold{color:var(--gold);background:rgba(245,215,110,.09);border-color:rgba(245,215,110,.3);}
+  .muted{color:var(--text-dim);font-size:13.5px;}
+  .hl{color:var(--gold);}
+
+  /* ============ ① 个人基本信息 ============ */
+  .hero{padding-top:104px;}
+  .hero-card{position:relative;overflow:hidden;border-radius:26px;}
+  .hero-bg{
+    position:absolute;inset:0;
+    background:url("海底.png") center/cover no-repeat;
+    filter:saturate(1.05);
+  }
+  .hero-bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(100deg, rgba(3,18,31,.88) 18%, rgba(6,43,71,.62) 55%, rgba(3,18,31,.82));
+  }
+  .hero-inner{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,44px);
+    padding:clamp(24px,4vw,46px);align-items:center;
+  }
+  .avatar-wrap{text-align:center;}
+  .avatar{
+    width:clamp(150px,18vw,200px);height:clamp(150px,18vw,200px);
+    border-radius:50%;object-fit:cover;object-position:center 28%;
+    border:3px solid rgba(127,231,255,.65);
+    box-shadow:0 0 0 6px rgba(127,231,255,.12), 0 0 42px rgba(127,231,255,.35);
+  }
+  .avatar-note{font-size:12px;color:rgba(230,246,255,.75);margin-top:10px;}
+  .hero-name{
+    font-size:clamp(30px,4.6vw,44px);font-weight:bold;letter-spacing:5px;line-height:1.25;
+    background:linear-gradient(95deg,#a5ecff 15%,#ffffff 45%,#f5d76e 90%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero-sub{margin:6px 0 16px;color:#dff4ff;font-size:15.5px;letter-spacing:1px;}
+  .info-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px 26px;font-size:14.5px;
+  }
+  .info-grid .row{display:flex;gap:8px;align-items:baseline;}
+  .info-grid .k{color:var(--aqua-dim);white-space:nowrap;font-size:13px;}
+  .info-grid .v{color:var(--text);}
+  .hero-motto{
+    margin-top:14px;font-size:13.5px;color:var(--pearl);
+    border-left:3px solid var(--gold);padding:4px 12px;
+    background:rgba(245,215,110,.07);border-radius:0 10px 10px 0;display:inline-block;
+  }
+
+  /* ============ ② 项目经历 ============ */
+  .proj-card{padding:clamp(20px,3vw,32px);}
+  .proj-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px;}
+  .proj-title{font-size:20px;font-weight:bold;color:#fff;}
+  .proj-title small{color:var(--aqua);font-weight:normal;margin-left:8px;font-size:13px;}
+  .proj-card ul{margin:10px 0 4px 0;padding-left:20px;}
+  .proj-card li{margin:5px 0;font-size:14.5px;}
+  .ppt-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px;}
+  .ppt-grid img{border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 32px rgba(0,9,26,.5);}
+  .placeholder-card{
+    margin-top:22px;padding:18px 22px;border-radius:18px;
+    border:1.6px dashed rgba(127,231,255,.35);
+    color:var(--text-dim);font-size:14px;
+    background:rgba(127,231,255,.04);
+  }
+  .placeholder-card b{color:var(--aqua);}
+  .coral-strip{
+    margin-top:22px;border-radius:18px;overflow:hidden;position:relative;height:150px;
+  }
+  .coral-strip img{width:100%;height:100%;object-fit:cover;filter:brightness(.82) saturate(1.05);}
+  .coral-strip span{
+    position:absolute;left:18px;bottom:12px;font-size:13px;color:#eaf7ff;
+    text-shadow:0 2px 10px rgba(0,10,25,.9);letter-spacing:2px;
+  }
+
+  /* ============ ③ 竞赛荣耀 ============ */
+  .award-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .award-card{padding:24px;display:flex;gap:16px;align-items:flex-start;}
+  .medal{
+    width:52px;height:52px;flex:none;border-radius:50%;font-size:26px;
+    display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 35% 30%, #ffe9a8, #d9a72e 68%, #9c6f14);
+    box-shadow:0 0 22px rgba(245,215,110,.45);
+  }
+  .award-card h3{font-size:17px;color:#fff;margin-bottom:4px;}
+  .award-card p{font-size:13.5px;color:var(--text-dim);}
+  .award-gallery{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;margin-top:22px;}
+  .quote-band{
+    margin-top:22px;padding:20px 26px;border-radius:18px;
+    background:linear-gradient(120deg, rgba(245,215,110,.12), rgba(127,231,255,.07));
+    border:1px solid rgba(245,215,110,.28);
+    font-size:15.5px;color:var(--pearl);letter-spacing:1px;
+  }
+  .quote-band b{color:var(--gold);}
+
+  /* ============ ④ 自我评价 ============ */
+  .self-quote{
+    font-size:clamp(18px,2.6vw,23px);color:#fff;line-height:2;letter-spacing:1.5px;
+    text-align:center;padding:8px 10px 2px;
+  }
+  .self-quote .qm{color:var(--aqua);font-size:1.4em;}
+  .trait-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px;}
+  .trait{padding:18px 16px;text-align:center;border-radius:16px;}
+  .trait .ico{font-size:26px;}
+  .trait h4{color:var(--aqua);margin:8px 0 4px;font-size:15.5px;letter-spacing:2px;}
+  .trait p{font-size:12.8px;color:var(--text-dim);line-height:1.7;}
+  .self-gallery{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;margin-top:22px;}
+
+  /* ============ ⑤ 兴趣爱好 ============ */
+  .hobby-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;align-items:stretch;}
+  .hobby-list{padding:clamp(20px,3vw,30px);}
+  .hobby-list h3{color:#fff;font-size:17px;margin-bottom:10px;}
+  .hobby-item{display:flex;gap:10px;align-items:baseline;margin:9px 0;font-size:14.5px;}
+  .hobby-item .ico{flex:none;width:26px;text-align:center;}
+  .hobby-note{
+    margin-top:14px;font-size:13px;color:var(--text-dim);
+    border-top:1px dashed rgba(127,231,255,.25);padding-top:12px;
+  }
+
+  /* ============ ⑥ 工作经验 ============ */
+  .timeline{position:relative;margin-left:10px;padding-left:28px;}
+  .timeline::before{
+    content:"";position:absolute;left:0;top:6px;bottom:6px;width:2.5px;border-radius:3px;
+    background:linear-gradient(180deg,var(--aqua),rgba(127,231,255,.08));
+  }
+  .t-item{position:relative;margin-bottom:18px;padding:18px 22px;}
+  .t-item::before{
+    content:"";position:absolute;left:-33.5px;top:26px;width:12px;height:12px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #d9f6ff, #4db6d8);
+    box-shadow:0 0 0 4px rgba(127,231,255,.18), 0 0 14px rgba(127,231,255,.6);
+  }
+  .t-item h3{font-size:16.5px;color:#fff;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .t-item .when{font-size:12px;color:var(--aqua-dim);border:1px solid rgba(127,231,255,.3);border-radius:999px;padding:1px 10px;}
+  .t-item p{font-size:13.8px;color:var(--text-dim);margin-top:6px;}
+  .work-gallery{display:grid;grid-template-columns:1fr;gap:0;margin-top:22px;}
+  .work-gallery img{height:300px;object-fit:cover;object-position:center 30%;}
+  .work-gallery figcaption{margin-top:9px;}
+
+  /* ============ 尾部 ============ */
+  footer{
+    max-width:1000px;margin:30px auto 0;padding:34px 22px 46px;text-align:center;
+    color:var(--text-dim);font-size:13.5px;
+    border-top:1px solid rgba(127,231,255,.12);
+  }
+  footer .big{font-size:19px;color:#fff;letter-spacing:3px;margin-bottom:8px;}
+  footer a{color:var(--aqua);text-decoration:none;}
+  .wave-top{display:block;width:100%;height:46px;}
+
+  /* ============ 回顶按钮 ============ */
+  #backTop{
+    position:fixed;right:26px;bottom:30px;z-index:60;
+    width:46px;height:46px;border-radius:50%;border:1px solid rgba(127,231,255,.4);
+    background:rgba(6,43,71,.75);color:var(--aqua);font-size:20px;cursor:pointer;
+    opacity:0;pointer-events:none;transition:.35s;
+    backdrop-filter:blur(8px);box-shadow:0 10px 26px rgba(0,9,26,.5);
+  }
+  #backTop.show{opacity:1;pointer-events:auto;}
+  #backTop:hover{transform:translateY(-4px);background:rgba(10,58,94,.9);}
+
+  /* ============ 入场动画 ============ */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease, transform .9s ease;}
+  .reveal.on{opacity:1;transform:none;}
+
+  /* ============ 响应式 ============ */
+  @media (max-width:1150px){
+    .mermaid-side{display:none;}
+  }
+  @media (max-width:880px){
+    .grid-2,.award-grid,.ppt-grid,.hobby-wrap,.self-gallery,.award-gallery{grid-template-columns:1fr;}
+    .trait-grid{grid-template-columns:1fr;}
+    .info-grid{grid-template-columns:1fr;}
+    .hero-inner{grid-template-columns:1fr;text-align:center;}
+    .hero-inner .info-grid .row{justify-content:center;}
+    section{padding:52px 16px 22px;}
+    .work-gallery img{height:220px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 气泡层 -->
+<div class="bubbles" aria-hidden="true">
+  <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+  <span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+</div>
+
+<!-- 左右浮动美人鱼 -->
+<div class="mermaid-side mermaid-left" aria-hidden="true">
+  <img src="左边女美人鱼.png" alt="左侧美人鱼装饰">
+</div>
+<div class="mermaid-side mermaid-right" aria-hidden="true">
+  <img src="右边男美人鱼.png" alt="右侧美人鱼装饰">
+</div>
+
+<!-- 顶部导航 -->
+<nav>
+  <div class="brand"><span class="fin">🧜‍♀️</span>罗嘉嘉 · 深海简历</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#info" class="active">基本信息</a>
+    <a href="#projects">项目经历</a>
+    <a href="#awards">竞赛荣耀</a>
+    <a href="#evaluation">自我评价</a>
+    <a href="#hobbies">兴趣爱好</a>
+    <a href="#work">工作经验</a>
+  </div>
+</nav>
+
+<!-- ① 个人基本信息 -->
+<section id="info" class="hero">
+  <div class="sec-head reveal">
+    <span class="num">01</span><h2>个人基本信息</h2><span class="en">About Me</span>
+  </div>
+  <div class="hero-card glass reveal">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="avatar-wrap">
+        <img class="avatar" src="images/info-mermaid.jpg" alt="美人鱼主题头像">
+        <div class="avatar-note">🧜‍♀️ 美人鱼主题占位头像 · 可自行替换为个人照片</div>
+      </div>
+      <div>
+        <h1 class="hero-name">罗嘉嘉</h1>
+        <div class="hero-sub">人工智能应用技术 · 在读大二 ｜ PPT 设计师</div>
+        <div class="info-grid">
+          <div class="row"><span class="k">🎂 生日</span><span class="v">2006 年 12 月 28 日（20 岁）</span></div>
+          <div class="row"><span class="k">🧬 民族</span><span class="v">汉族 · 父籍广西</span></div>
+          <div class="row"><span class="k">📍 现居</span><span class="v">广东 · 珠海</span></div>
+          <div class="row"><span class="k">🏫 学校</span><span class="v">广东科学技术职业学院（2025 – 2028）</span></div>
+          <div class="row"><span class="k">💻 学院</span><span class="v">计算机学院 · 人工智能应用技术专业</span></div>
+          <div class="row"><span class="k">🛠️ 身份</span><span class="v">PPT 设计师 · AI 方向学习者</span></div>
+          <div class="row"><span class="k">📧 邮箱</span><span class="v">nayun88@qq.com</span></div>
+          <div class="row"><span class="k">📱 电话</span><span class="v">159 1727 3365</span></div>
+        </div>
+        <div class="hero-motto">「 不过能力如何，比的是个态度，好运自然会降临 」</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ② 项目经历 -->
+<section id="projects">
+  <div class="sec-head reveal">
+    <span class="num">02</span><h2>项目经历</h2><span class="en">Projects</span>
+  </div>
+  <div class="proj-card glass reveal">
+    <div class="proj-top">
+      <span class="proj-title">安全人机工程学 · AI 课程课件美化<small>350 分钟课程</small></span>
+      <span class="chip tag-gold">PPT 美化</span>
+      <span class="chip">AI 课程</span>
+      <span class="chip">团队协作</span>
+    </div>
+    <ul>
+      <li>设计团队共 <b class="hl">6 名设计师</b>，其中 2 名负责审核与客户交互（1 名两头兼顾），我是<b class="hl">专注设计岗</b>的成员之一。</li>
+      <li>在<b class="hl">兼顾大学课业与兼职</b>的情况下，个人负责部分共投入 <b class="hl">7 天</b>完成。</li>
+      <li>负责课程内页的版式视觉设计、插图与配色统一，保证 350 分钟内容体量下的风格一致性。</li>
+    </ul>
+    <div class="ppt-grid">
+      <figure>
+        <img src="images/ppt-1.png" alt="作品：科技赋能农业 主题PPT">
+        <figcaption>作品一 ·「科技赋能农业」乡村振兴主题课件（摘自设计师罗嘉嘉作品集）</figcaption>
+      </figure>
+      <figure>
+        <img src="images/ppt-2.png" alt="作品：西游记 主题PPT">
+        <figcaption>作品二 ·「西游记」四大名著主题课件（摘自设计师罗嘉嘉作品集）</figcaption>
+      </figure>
+    </div>
+    <div class="placeholder-card">
+      <b>🫧 待打捞的新项目：</b>人工智能应用方向的专业课程实训 / 校园智能小工具正在筹备中 —— 专业内第一个项目位，虚位以待。
+    </div>
+    <div class="coral-strip">
+      <img src="images/coral-project.jpg" alt="珊瑚礁配图">
+      <span>REEF · 项目如珊瑚礁，一砖一瓦慢慢长成生态</span>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 竞赛荣耀 -->
+<section id="awards">
+  <div class="sec-head reveal">
+    <span class="num">03</span><h2>竞赛荣耀</h2><span class="en">Honors</span>
+  </div>
+  <div class="award-grid">
+    <div class="award-card glass reveal">
+      <div class="medal">🥉</div>
+      <div>
+        <h3>蓝桥杯大赛 · Python 程序设计 三等奖</h3>
+        <p>全国性 IT 学科竞赛 · C 组 —— 用代码证明：文科气质的外表下，藏着能跑通的 main 函数。</p>
+      </div>
+    </div>
+    <div class="award-card glass reveal">
+      <div class="medal">🥉</div>
+      <div>
+        <h3>围棋比赛 三等奖</h3>
+        <p>黑白之间讲策略 —— 布局、取舍、收官，和做项目是一个道理。</p>
+      </div>
+    </div>
+  </div>
+  <div class="award-gallery reveal">
+    <figure>
+      <img src="images/pearl-award.jpg" alt="珍珠与贝壳配图">
+      <figcaption>每一枚贝壳里，都可能藏着一颗被时间打磨的珍珠</figcaption>
+    </figure>
+    <figure>
+      <img src="images/pearl-sand.jpg" alt="沙滩上的贝壳与珍珠配图">
+      <figcaption>奖项是沙里淘珠 · 态度是那只开门的牡蛎</figcaption>
+    </figure>
+  </div>
+  <div class="quote-band reveal">
+    🏆 <b>我的竞赛格言：</b>不过能力如何，比的是个态度，好运自然会降临。
+  </div>
+</section>
+
+<!-- ④ 自我评价 -->
+<section id="evaluation">
+  <div class="sec-head reveal">
+    <span class="num">04</span><h2>自我评价</h2><span class="en">Self Evaluation</span>
+  </div>
+  <div class="glass reveal" style="padding:clamp(24px,4vw,40px);">
+    <div class="self-quote">
+      <span class="qm">“</span>身体是 20 岁的年轻人，内心是 30 多岁的中年人。<span class="qm">”</span>
+    </div>
+    <p class="muted" style="text-align:center;margin-top:10px;">—— 原话摘自本人简介 · 以下为三个关键词解读</p>
+    <div class="trait-grid">
+      <div class="trait glass">
+        <div class="ico">🌊</div>
+        <h4>沉稳内核</h4>
+        <p>比同龄人多一份冷静，遇事先拆解再动手，不慌不忙把事做完。</p>
+      </div>
+      <div class="trait glass">
+        <div class="ico">⚖️</div>
+        <h4>态度优先</h4>
+        <p>相信"比的是态度"：交付讲信用，过程不含糊，结果自然不差。</p>
+      </div>
+      <div class="trait glass">
+        <div class="ico">🎨</div>
+        <h4>审美在线</h4>
+        <p>PPT 设计师的本能：对版式、配色与细节有洁癖式的追求。</p>
+      </div>
+    </div>
+    <div class="self-gallery">
+      <figure>
+        <img src="images/jellyfish-self.jpg" alt="深海水母配图">
+        <figcaption>表面随波逐流，内核自有方向 —— 像深海里的水母</figcaption>
+      </figure>
+      <figure>
+        <img src="images/underwater-dress.jpg" alt="水下光影人像配图">
+        <figcaption>年轻的外壳 · 沉稳的深水区</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ 个人兴趣爱好 -->
+<section id="hobbies">
+  <div class="sec-head reveal">
+    <span class="num">05</span><h2>个人兴趣爱好</h2><span class="en">Hobbies</span>
+  </div>
+  <div class="hobby-wrap">
+    <div class="hobby-list glass reveal">
+      <h3>🫧 广度型选手 · 兴趣图鉴</h3>
+      <div class="hobby-item"><span class="ico">🎨</span><span><b class="hl">做 PPT</b> —— 唯一"上瘾级"兴趣，从排版到配色都能玩一整天</span></div>
+      <div class="hobby-item"><span class="ico">🎬</span><span><b class="hl">AI 短剧</b> —— 用 AI 工具编故事、生成画面，追新也上手玩</span></div>
+      <div class="hobby-item"><span class="ico">🧳</span><span><b class="hl">旅游</b> —— 收集不同城市的海风与烟火气</span></div>
+      <div class="hobby-item"><span class="ico">🍜</span><span><b class="hl">吃美食</b> —— 城市探索的最终目的，探店名单比课程表还长</span></div>
+      <div class="hobby-item"><span class="ico">♟️</span><span><b class="hl">棋牌策略</b> —— 围棋三等奖的副产物：喜欢"想一步看三步"</span></div>
+      <div class="hobby-note">按本人原话整理：「兴趣挺多，基本除了学习、背书、钓鱼、刺激类运动都喜欢，但都没有很喜欢。」—— 唯一例外是做 PPT。</div>
+    </div>
+    <figure class="reveal">
+      <img src="images/betta-hobby.jpg" alt="斗鱼配图">
+      <figcaption>像缸里的斗鱼：安静，但有自己的领地和主见</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ⑥ 工作经验 -->
+<section id="work">
+  <div class="sec-head reveal">
+    <span class="num">06</span><h2>工作经验</h2><span class="en">Work Experience</span>
+  </div>
+  <div class="grid-2" style="align-items:start;">
+    <div class="timeline reveal">
+      <div class="t-item glass">
+        <h3>📚 学校投餐兼职 <span class="when">在校期间</span></h3>
+        <p>课余时间对接餐品投放与整理，多线程跑教室与档口，练出靠谱的执行力和服务意识。</p>
+      </div>
+      <div class="t-item glass">
+        <h3>🖥️ PPT 设计师（接单） <span class="when">持续进行</span></h3>
+        <p>面向真实客户做课件与汇报页设计：沟通需求 → 出稿 → 改稿 → 交付， deadline 意识拉满。</p>
+      </div>
+      <div class="t-item glass">
+        <h3>🎙️ 聊天型主播 <span class="when">1 个假期</span></h3>
+        <p>一个假期的直播陪伴式聊天：练镜头感、控场与陌生人破冰能力，读懂屏幕另一端的人。</p>
+      </div>
+      <div class="t-item glass">
+        <h3>🏭 流水线暑假工 <span class="when">2 个假期</span></h3>
+        <p>两个暑假的产线经历：重复动作里磨耐性，理解标准流程与效率的意义。</p>
+      </div>
+    </div>
+    <figure class="reveal">
+      <img src="images/diver-work.jpg" alt="潜水员与海龟配图">
+      <figcaption>每一份工作都是一次下潜：越深，越看见不一样的世界</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 波浪分隔 -->
+<svg class="wave-top" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,30 C240,60 480,0 720,25 C960,50 1200,10 1440,35 L1440,60 L0,60 Z" fill="rgba(127,231,255,.07)"></path>
+</svg>
+
+<footer>
+  <div class="big">🧜‍♀️ 罗嘉嘉 · 期待与你在深海相遇</div>
+  <div>📧 <a href="mailto:nayun88@qq.com">nayun88@qq.com</a> ｜ 📱 159 1727 3365 ｜ 📍 广东 · 珠海</div>
+  <div style="margin-top:10px;font-size:12px;">区块配图来自 Pexels（免费可商用），均已保存至 images/ 目录，可随时替换 ｜ 美人鱼装饰使用本地图：左边女美人鱼.png / 右边男美人鱼.png</div>
+</footer>
+
+<button id="backTop" title="回到顶部">🫧</button>
+
+<script>
+  // 滚动入场动画
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // 导航高亮
+  const links = document.querySelectorAll('#navLinks a');
+  const secObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  ['info','projects','awards','evaluation','hobbies','work'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) secObs.observe(el);
+  });
+
+  // 回到顶部
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('show', window.scrollY > 620);
+  });
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>

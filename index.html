@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <style>
+        /* 美人鱼上下浮动动画 */
+        @keyframes mermaidFloat {
+            0%, 100% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(calc(-50% - 30px));
+            }
+        }
+        /* 左侧美人鱼图片 —— 放大尺寸 */
+        .float-left {
+            position: fixed;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: mermaidFloat 3.5s ease-in-out infinite;
+            width: 650px; /* 修改这里调整图片大小，数值越大图片越大 */
+            z-index: 999;
+        }
+        /* 右侧图片1 —— 同步放大 */
+        .float-right {
+            position: fixed;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: mermaidFloat 3.5s ease-in-out infinite;
+            width: 650px; /* 和左边图片保持一样大小 */
+            z-index: 999;
+        }
+        /* 中间简历文字容器 */
+        .content-box{
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        /* 主标题样式 */
+        .content-box h1{
+            font-size: 42px;
+            font-weight: bold;
+            color: #111111;
+            margin-bottom:25px;
+        }
+        /* 姓名链接 */
+        .name-link{
+            font-size:20px;
+            color:#6b24b3;
+            text-decoration:none;
+        }
+        /* 正文通用样式 */
+        .content-box p{
+            font-size:17px;
+            color:#222222;
+            line-height:1.7;
+            margin:8px 0;
+        }
+        /* 提交按钮美化
+        input[type="button"]{
+            margin-top:12px;
+            padding: 5px 16px;
+            font-size:16px;
+            cursor:pointer;
+        } */
+        /* 发送邮件链接 */
+        .mail-link{
+            font-size:17px;
+        }
+        body {
+    margin: 0;
+    /* 背景图片，居中，cover铺满屏幕，不重复 */
+    background: url("海底.png") no-repeat center center;
+    background-size: cover;
+    /* 保证高度占满整个浏览器窗口 */
+    min-height: 100vh;
+}
+    </style>
+</head>
+<body>
+    <!-- 左侧浮动美人鱼 -->
+    <img src="美人鱼.png" alt="美人鱼" class="float-left">
+    <!-- 右侧浮动图片1 -->
+    <img src="图片1.png" alt="男美人鱼" class="float-right">
+
+   <!-- 中间简历文字区域，全部居中 -->
+    <div class="content-box">
+        <h1>个人简历</h1>
+        <a href="https://aiqicha.baidu.com/person?personId=0ac3644e0201700659e66858bf01362a" class="name-link">姓名：罗嘉嘉</a>
+        <!-- 行内式引入CSS样式 -->
+        <p style="color: blue">籍贯：广东中山</p>
+        <p>居住地：广东珠海</p>
+        <!-- 内嵌式引入CSS样式 -->
+        <p>邮箱：nayun88@qq.com</p>
+        <p id="phone">电话：15917273365</p>
+        <p class="c1">兴趣爱好：做PPT，AI短剧，旅游，吃美食</p>
+        <p class="c1">个人经历：2025-2028 广东科学技术职业学院</p>
+        <p class="c1">项目：目前暂时无</p>
+        <p class="c1">竞赛：蓝桥杯Python程序设计C组三等奖、围棋比赛三等奖</p>
+        <!-- 行内式引入javaScript -->
+        <!-- <input type="button" value="提交" onclick="alert('Hello LuoJiaJia!')">
+        <br> -->
+        <a href="javascript:alert('你的操作已成功')" class="mail-link">发送邮件</a>
+    </div>
+</body>
+</html>
